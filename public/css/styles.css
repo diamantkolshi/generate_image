@@ -1,0 +1,30 @@
+.navbar{
+  border-radius: 0px;
+}
+.navbar-inverse{
+  background-color: #3A316F;
+  border-color: #3A316F;
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus{
+  color: #ECF0F1;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus{
+  color: #ECF0F1;
+}
+.panel > .table-responsive{
+  border-top: none!important;
+}
+.panel-footer{
+  background-color: #FFFFFF;
+}
+footer a{
+  color: #858A8B;
+}
+footer a:hover{
+  color: #3A316F;
+}
+#panel-group-l{
+  margin-bottom: 5px;
+}
