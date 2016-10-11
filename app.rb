@@ -27,7 +27,7 @@ post '/upload' do
 
   File.open(target, 'wb') {|f| f.write tempfile.read }
   var = Image.new
-  var.create_image(params[:name], params[:text], filename)
+  var.create_image(params[:name], params[:profession], params[:text], params[:quote], filename)
   @messages = var.messages
   
   erb :upload
