@@ -5,41 +5,43 @@ require 'pry'
 
 class Image
   include Magick
-  attr_accessor :canvas, :messages
+  attr_accessor :canvas, :messages, :imagename
   $count ||= 0
 
   def create_image(name, profession, description, quote, image)
-    @canvas = Magick::Image.read("./public/img/#{image}").first
-    image_width = @canvas.rows
+    @imagename = image
+    @canvas = Magick::Image.read("./public/img/#{image}").first    
 
     if valid_format == true
+      image_width = @canvas.rows
 	    draw_name(name, 14, 100, image_width - 80, 30)
 	    draw_name(profession, 14, 100, image_width - 50, 20)
 	    draw_text(description, image_width)
       draw_quote(quote, image_width)
 
-	    save_image(image)
+	    save_image
     else
-      @messages = "Formati nuk eshte valid (duhet te jete 1024xX)"
+      @messages = "Formati nuk eshte valid (duhet te jete 1024 > x < 2000"
     end
+    File.delete("./public/img/#{@imagename}") 
   end
 
   def valid_format
-    if @canvas.columns > 1023
-      # @canvas.crop!(0,0,1027,1027)
+    if @canvas.columns > 1000 && @canvas.columns < 2000
+      @canvas.crop!(0,0,1027,1027)
       true
     else
       false
-    end
+    end     
   end
 
-  def save_image(name)
+  def save_image
     if canvas.write("./public/img/reprofile.png")
       @messages = "Fotografia eshte krijuar me sukese"
     else
       @messages = "Fotoja nuk eshte krijuar"
     end 
-    File.delete("./public/img/#{name}")  
+        
   end
 
   def draw_name(text, position, x, y, size)
